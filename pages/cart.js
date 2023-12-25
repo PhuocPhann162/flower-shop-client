@@ -100,7 +100,7 @@ export default function CartPage() {
     if (typeof window === "undefined") {
       return;
     }
-    if (window.location.href.includes("success")) {
+    if (window?.location.href.includes("success")) {
       setIsSuccess(true);
       clearCart();
     }
