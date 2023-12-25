@@ -59,7 +59,7 @@ export default function SearchPage() {
           />
         </div>
         {!isLoading && phrase !== "" && products.length === 0 && (
-          <h2>No products found for query "{phrase}"</h2>
+          <h2>No products found for query &quot;{phrase}&quot;</h2>
         )}
         {isLoading && <Spinner fullWidth={true} />}
         {!isLoading && products.length > 0 && (
