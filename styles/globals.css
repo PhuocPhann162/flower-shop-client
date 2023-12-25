@@ -1,0 +1,39 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.title {
+  @apply text-2xl font-semibold py-2 text-main-bg;
+}
+
+.btn-primary {
+  @apply text-white rounded-md hover:bg-red-900 hover:ring-1 hover:ring-main-bg hover:ring-offset-0 bg-main-bg;
+}
+
+table.basic {
+  @apply w-full;
+}
+
+table.basic thead {
+  @apply uppercase text-left text-sm text-gray-300 font-semibold;
+}
+
+table.basic td {
+  @apply border-t border-gray-300;
+}
+
+.box {
+  @apply shadow-md rounded-md p-6 bg-white;
+}
+
+input {
+  @apply w-full p-2 mb-2 border border-rose-200 rounded-md;
+}
+
+.btn-gradient {
+  @apply bg-gradient-to-r from-cyan-100 to-rose-100 p-2 text-white;
+}
+
+.bg-feature-gradient {
+  @apply bg-gradient-to-r from-feature-bg to-white;
+}
