@@ -11,6 +11,7 @@ import styled from "styled-components";
 import { useRouter } from "next/router";
 import { RevealWrapper } from "next-reveal";
 import Meta from "@/components/Meta";
+import { useSession } from "next-auth/react";
 
 const ColumnsWrapper = styled.div`
   display: grid;
@@ -75,6 +76,7 @@ const CityHolder = styled.div`
 export default function CartPage() {
   const { swal, cartProducts, addProduct, removeProduct, clearCart } =
     useContext(CartContext);
+  const { data: session } = useSession();
   const [products, setProducts] = useState([]);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -106,6 +108,20 @@ export default function CartPage() {
       setShippingFee(res.data.value);
     });
   }, []);
+
+  useEffect(() => {
+    if (!session) {
+      return;
+    }
+    axios.get("/api/address").then((response) => {
+      setName(response.data.name);
+      setEmail(response.data.email);
+      setCity(response.data.city);
+      setPostalCode(response.data.postalCode);
+      setStreetAddress(response.data.streetAddress);
+      setCountry(response.data.country);
+    });
+  }, [session]);
 
   function moreOfThisProduct(id) {
     addProduct(id);
@@ -141,9 +157,11 @@ export default function CartPage() {
   }
 
   const router = useRouter();
+  console.log(router);
 
   const handleBackHomePage = () => {
     router.push("/");
+    clearCart();
   };
 
   if (isSuccess) {
